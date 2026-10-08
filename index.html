@@ -181,7 +181,6 @@
             display: block;
             width: 100%;
             height: auto;
-            mix-blend-mode: screen;
             transform: translateY(-50%);
         }
 
@@ -291,10 +290,23 @@
         /* ---------- Hero ---------- */
 
         .hero {
+            position: relative;
+            isolation: isolate;
             display: flex;
             flex-direction: column;
             min-height: calc(100svh - 150px);
             padding-top: clamp(36px, 6vh, 80px);
+        }
+
+        .hero::before {
+            content: "";
+            position: absolute;
+            z-index: -1;
+            inset: -2% -2% 0;
+            background:
+                radial-gradient(ellipse at 18% 16%, rgba(255,127,47,0.025), transparent 52%),
+                linear-gradient(145deg, rgba(0,0,0,0.28), rgba(0,0,0,0.14) 68%, rgba(0,0,0,0.06));
+            pointer-events: none;
         }
 
         .hero-inner {
@@ -1125,7 +1137,7 @@
 
         @media (min-width: 961px) {
             .kbq-story-track {
-                height: clamp(3000px, 480svh, 4800px);
+                height: clamp(5600px, 900svh, 9000px);
             }
 
             .kbq-story-stage {
@@ -1182,36 +1194,61 @@
         }
 
         .kbq-brand-composition,
-        .kbq-digital-composition,
         .kbq-campaign-composition {
             position: relative;
             min-height: 560px;
         }
 
-        .kbq-brand-main {
-            position: absolute;
-            inset: 5% 18% 5% 0;
-            z-index: 1;
+        .kbq-brand-composition {
+            display: grid;
+            grid-template-columns: minmax(0, 1.15fr) minmax(0, 0.85fr);
+            grid-template-rows: repeat(2, minmax(0, 1fr));
+            gap: 12px;
         }
 
-        .kbq-brand-logo {
-            position: absolute;
-            top: 1%;
-            right: 0;
-            z-index: 3;
-            width: 39%;
-            aspect-ratio: 1;
-            padding: 12px;
+        .kbq-brand-tile {
+            position: relative;
+            overflow: hidden;
+            min-width: 0;
+            border: 1px solid rgba(255,255,255,0.12);
+            border-radius: 18px;
+            background-color: #111;
+            background-image: url("KBQ-assets/branding/khaja-bbq-brand-applications.jpeg");
+            background-repeat: no-repeat;
+            box-shadow: 0 28px 70px rgba(0,0,0,0.32);
         }
 
-        .kbq-brand-trailer {
+        .kbq-brand-tile.is-truck {
+            grid-row: 1 / -1;
+            background-size: 200% 100%;
+            background-position: left center;
+        }
+
+        .kbq-brand-tile.is-cap {
+            background-size: 200% 200%;
+            background-position: right top;
+        }
+
+        .kbq-brand-tile.is-badge {
+            background-size: 200% 200%;
+            background-position: right bottom;
+        }
+
+        .kbq-brand-tile figcaption {
             position: absolute;
-            right: 0;
-            bottom: 2%;
-            z-index: 2;
-            width: 48%;
-            aspect-ratio: 4 / 5;
-            padding: 10px;
+            right: 12px;
+            bottom: 12px;
+            left: 12px;
+            width: fit-content;
+            padding: 6px 9px;
+            border: 1px solid rgba(255,255,255,0.16);
+            border-radius: 999px;
+            background: rgba(4,5,7,0.82);
+            color: var(--text-soft);
+            font-size: 0.58rem;
+            font-weight: 600;
+            letter-spacing: 0.12em;
+            text-transform: uppercase;
         }
 
         .kbq-frame img,
@@ -1221,21 +1258,272 @@
 
         .kbq-digital-composition {
             display: grid;
-            grid-template-columns: minmax(170px, 0.72fr) minmax(0, 1fr);
-            gap: clamp(14px, 2.5vw, 30px);
-            align-items: center;
-        }
-
-        .kbq-phone {
-            align-self: stretch;
-            max-height: 600px;
-            padding: 8px;
-            background: #111318;
-        }
-
-        .kbq-digital-side {
-            display: grid;
+            min-height: 0;
             gap: 18px;
+        }
+
+        .kbq-digital-slide {
+            min-width: 0;
+        }
+
+        .kbq-website-mockup,
+        .kbq-facebook-mockup {
+            width: min(100%, 560px);
+            margin-inline: auto;
+            overflow: hidden;
+            border: 1px solid rgba(255,255,255,0.16);
+            border-radius: 15px;
+            background: #10100f;
+            box-shadow: 0 28px 70px rgba(0,0,0,0.42);
+            color: #f7f2e9;
+            font-family: Inter, "Segoe UI", Roboto, Arial, sans-serif;
+        }
+
+        .kbq-browser-bar {
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            height: 30px;
+            padding: 0 10px;
+            border-bottom: 1px solid rgba(255,255,255,0.1);
+            background: #191919;
+        }
+
+        .kbq-browser-bar i {
+            width: 6px;
+            height: 6px;
+            border-radius: 50%;
+            background: #777;
+        }
+
+        .kbq-browser-bar span {
+            margin-left: auto;
+            color: rgba(255,255,255,0.58);
+            font-size: 0.55rem;
+            letter-spacing: 0.04em;
+        }
+
+        .kbq-website-page {
+            display: grid;
+            grid-template-rows: auto minmax(180px, 1fr) auto;
+            min-height: 390px;
+        }
+
+        .kbq-website-nav {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 12px;
+            padding: 12px 18px;
+            background: #10100f;
+        }
+
+        .kbq-website-wordmark {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            color: #f8ead0;
+            font-size: clamp(0.75rem, 1.4vw, 1rem);
+            font-weight: 800;
+            letter-spacing: 0.11em;
+            line-height: 1;
+            white-space: nowrap;
+        }
+
+        .kbq-website-wordmark > span:first-child {
+            display: block;
+            width: 32px;
+            flex: 0 0 32px;
+            aspect-ratio: 1;
+            border-radius: 50%;
+            margin-top: 0;
+            background: #18120e url("KBQ-assets/branding/khaja-bbq-brand-applications.jpeg") right bottom / 200% 200% no-repeat;
+        }
+
+        .kbq-website-wordmark span {
+            display: block;
+            margin-top: 4px;
+            color: #d98a32;
+            font-size: 0.52em;
+            letter-spacing: 0.34em;
+        }
+
+        .kbq-website-links {
+            display: flex;
+            gap: clamp(8px, 1.6vw, 18px);
+            color: rgba(255,255,255,0.72);
+            font-size: 0.55rem;
+            letter-spacing: 0.08em;
+            text-transform: uppercase;
+        }
+
+        .kbq-website-hero {
+            position: relative;
+            display: flex;
+            align-items: flex-end;
+            min-height: 200px;
+            padding: clamp(16px, 3vw, 30px);
+            background:
+                linear-gradient(0deg, rgba(0,0,0,0.82), rgba(0,0,0,0.05) 80%),
+                url("KBQ-assets/food-content/khaja-bbq-brisket.png") center 68% / cover;
+        }
+
+        .kbq-website-hero span {
+            max-width: 13ch;
+            color: #fff8ec;
+            font-size: clamp(1.3rem, 3.2vw, 2.5rem);
+            font-weight: 800;
+            letter-spacing: -0.04em;
+            line-height: 0.98;
+            text-transform: uppercase;
+        }
+
+        .kbq-website-menu {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+            gap: 8px;
+            padding: 12px 18px;
+            color: rgba(255,255,255,0.8);
+            font-size: 0.6rem;
+            letter-spacing: 0.1em;
+            text-transform: uppercase;
+        }
+
+        .kbq-website-menu strong {
+            color: #d98a32;
+        }
+
+        .kbq-instagram-mockup {
+            display: flex;
+            justify-content: center;
+            width: min(100%, 304px);
+            max-height: 510px;
+            margin-inline: auto;
+            padding: 6px;
+            border: 1px solid rgba(255,255,255,0.16);
+            border-radius: 20px;
+            background: #111318;
+            box-shadow: 0 28px 70px rgba(0,0,0,0.42);
+        }
+
+        .kbq-instagram-mockup img {
+            display: block;
+            width: auto;
+            max-width: 100%;
+            max-height: 496px;
+            object-fit: contain;
+            border-radius: 14px;
+        }
+
+        .kbq-facebook-top {
+            position: relative;
+            height: 175px;
+            background:
+                linear-gradient(0deg, rgba(0,0,0,0.42), transparent 64%),
+                url("KBQ-assets/branding/khaja-bbq-brand-applications.jpeg") center 46% / cover;
+        }
+
+        .kbq-facebook-profile {
+            position: relative;
+            z-index: 1;
+            display: grid;
+            grid-template-columns: 62px minmax(0, 1fr);
+            gap: 12px;
+            align-items: end;
+            margin: -33px 18px 0;
+        }
+
+        .kbq-facebook-avatar {
+            display: grid;
+            place-items: center;
+            width: 62px;
+            aspect-ratio: 1;
+            border: 3px solid #10100f;
+            border-radius: 50%;
+            background: #18120e url("KBQ-assets/branding/khaja-bbq-brand-applications.jpeg") right bottom / 200% 200% no-repeat;
+        }
+
+        .kbq-facebook-name {
+            padding-bottom: 5px;
+            font-size: 0.9rem;
+            font-weight: 700;
+        }
+
+        .kbq-facebook-name span {
+            display: block;
+            margin-top: 3px;
+            color: rgba(255,255,255,0.6);
+            font-size: 0.57rem;
+            font-weight: 400;
+        }
+
+        .kbq-facebook-tabs {
+            display: flex;
+            gap: 16px;
+            margin: 12px 18px 0;
+            padding: 10px 0;
+            border-top: 1px solid rgba(255,255,255,0.1);
+            color: rgba(255,255,255,0.68);
+            font-size: 0.58rem;
+        }
+
+        .kbq-facebook-post {
+            display: grid;
+            grid-template-columns: minmax(0, 0.8fr) minmax(0, 1.2fr);
+            gap: 12px;
+            align-items: center;
+            margin: 0 18px 18px;
+            padding: 12px;
+            border: 1px solid rgba(255,255,255,0.1);
+            border-radius: 10px;
+            background: rgba(255,255,255,0.035);
+        }
+
+        .kbq-facebook-post img {
+            display: block;
+            width: 100%;
+            aspect-ratio: 1;
+            object-fit: cover;
+            border-radius: 7px;
+        }
+
+        .kbq-facebook-post p {
+            color: rgba(255,255,255,0.78);
+            font-size: 0.68rem;
+            line-height: 1.5;
+        }
+
+        .kbq-digital-label {
+            margin: 0 auto 9px;
+            color: var(--accent);
+            font-size: 0.63rem;
+            font-weight: 700;
+            letter-spacing: 0.18em;
+            text-align: center;
+            text-transform: uppercase;
+        }
+
+        @media (min-width: 961px) {
+            .kbq-digital-composition {
+                position: relative;
+                display: block;
+                height: clamp(400px, 56svh, 600px);
+            }
+
+            .kbq-digital-slide {
+                position: absolute;
+                inset: 0;
+                display: grid;
+                align-content: center;
+                opacity: var(--kbq-digital-opacity, 0);
+                transition: none;
+                pointer-events: none;
+            }
+
+            .kbq-digital-slide[aria-hidden="false"] {
+                pointer-events: auto;
+            }
         }
 
         .kbq-video-frame {
@@ -1270,6 +1558,17 @@
         .kbq-content-wall .kbq-frame:nth-child(1),
         .kbq-content-wall .kbq-frame:nth-child(3) {
             top: 38px;
+        }
+
+        .kbq-content-wall .kbq-frame {
+            aspect-ratio: 4 / 5;
+        }
+
+        .kbq-content-wall video {
+            display: block;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
         }
 
         .kbq-content-wall .kbq-frame:nth-child(2) {
@@ -1446,11 +1745,20 @@
             }
 
             .kbq-brand-composition,
-            .kbq-digital-composition,
             .kbq-campaign-composition,
             .kbq-content-wall {
                 max-width: 720px;
                 width: 100%;
+            }
+
+            .kbq-digital-composition {
+                width: 100%;
+            }
+
+            .kbq-digital-slide {
+                position: relative;
+                opacity: 1;
+                transform: none;
             }
 
             .kbq-results-layout {
@@ -1487,7 +1795,6 @@
             }
 
             .kbq-brand-composition,
-            .kbq-digital-composition,
             .kbq-campaign-composition,
             .kbq-content-wall {
                 display: grid;
@@ -1496,9 +1803,6 @@
                 min-height: 0;
             }
 
-            .kbq-brand-main,
-            .kbq-brand-logo,
-            .kbq-brand-trailer,
             .kbq-campaign-main,
             .kbq-campaign-side,
             .kbq-campaign-side.is-bottom {
@@ -1508,13 +1812,10 @@
                 aspect-ratio: auto;
             }
 
-            .kbq-brand-main,
             .kbq-campaign-main {
                 aspect-ratio: 4 / 5;
             }
 
-            .kbq-brand-logo,
-            .kbq-brand-trailer,
             .kbq-campaign-side {
                 aspect-ratio: 4 / 5;
             }
@@ -1524,17 +1825,38 @@
                 top: auto;
             }
 
-            .kbq-digital-composition {
+            .kbq-brand-composition {
                 grid-template-columns: minmax(0, 1fr);
+                grid-template-rows: none;
             }
 
-            .kbq-phone {
-                width: min(260px, 100%);
-                margin: 0 auto;
+            .kbq-brand-tile {
+                min-height: 220px;
             }
 
-            .kbq-digital-side {
-                grid-template-columns: repeat(2, minmax(0, 1fr));
+            .kbq-brand-tile.is-truck {
+                grid-row: auto;
+                min-height: 330px;
+                background-size: 200% 100%;
+                background-position: left center;
+            }
+
+            .kbq-brand-tile.is-cap {
+                background-size: 200% 200%;
+                background-position: right top;
+            }
+
+            .kbq-brand-tile.is-badge {
+                background-size: 200% 200%;
+                background-position: right bottom;
+            }
+
+            .kbq-website-page {
+                min-height: 330px;
+            }
+
+            .kbq-website-hero {
+                min-height: 180px;
             }
 
             .kbq-video-frame,
@@ -1586,6 +1908,17 @@
 
             #case-studies.our-work .kbq-stage-copy,
             #case-studies.our-work .kbq-stage > :not(.kbq-stage-copy) {
+                opacity: 1 !important;
+                transform: none !important;
+            }
+
+            #case-studies.our-work .kbq-digital-composition {
+                display: grid;
+                height: auto;
+            }
+
+            #case-studies.our-work .kbq-digital-slide {
+                position: relative;
                 opacity: 1 !important;
                 transform: none !important;
             }
@@ -2163,7 +2496,7 @@
         <header class="site-header">
             <a class="brand" href="#intro" aria-label="Zentariq Solutions home">
                 <span class="brand-logo-crop">
-                    <img src="KBQ-assets/branding/zentariq-logo.png" alt="Zentariq Solutions">
+                    <img src="KBQ-assets/branding/zentariq-logo-transparent.png" alt="Zentariq Solutions">
                 </span>
             </a>
             <nav class="site-nav" aria-label="Primary">
@@ -2423,15 +2756,15 @@
                             <p>We designed the logo, visual identity, food trailer branding, menu and core brand assets to establish a strong and consistent identity for Khaja BBQ.</p>
                         </div>
 
-                        <div class="kbq-brand-composition" aria-label="Khaja BBQ branding applications">
-                            <figure class="kbq-frame kbq-brand-main" data-kbq-layer data-kbq-x="24" data-kbq-y="34" data-kbq-scale="0.94">
-                                <img src="KBQ-assets/branding/khaja-bbq-brand-applications.jpeg" alt="Khaja BBQ branded food trailer, cap and brand applications" loading="lazy" decoding="async">
+                        <div class="kbq-brand-composition" aria-label="Khaja BBQ foundational brand identity">
+                            <figure class="kbq-brand-tile is-truck" role="img" aria-label="Khaja BBQ truck branding" data-kbq-layer data-kbq-x="24" data-kbq-y="34" data-kbq-scale="0.94">
+                                <figcaption>Truck branding</figcaption>
                             </figure>
-                            <figure class="kbq-frame kbq-brand-logo" data-kbq-layer data-kbq-x="42" data-kbq-y="-18" data-kbq-scale="0.9">
-                                <img src="KBQ-assets/branding/khaja-bbq-logo.jpeg" alt="Khaja BBQ logo" loading="lazy" decoding="async">
+                            <figure class="kbq-brand-tile is-cap" role="img" aria-label="Khaja BBQ cap and merchandise branding" data-kbq-layer data-kbq-x="42" data-kbq-y="-18" data-kbq-scale="0.9">
+                                <figcaption>Cap &amp; merchandise</figcaption>
                             </figure>
-                            <figure class="kbq-frame kbq-brand-trailer" data-kbq-layer data-kbq-x="50" data-kbq-y="28" data-kbq-scale="0.92">
-                                <img src="KBQ-assets/trailer/khaja-bbq-olathe.png" alt="Khaja BBQ trailer branding" loading="lazy" decoding="async">
+                            <figure class="kbq-brand-tile is-badge" role="img" aria-label="Khaja BBQ logo badge and brand applications" data-kbq-layer data-kbq-x="50" data-kbq-y="28" data-kbq-scale="0.92">
+                                <figcaption>Logo applications</figcaption>
                             </figure>
                         </div>
                     </article>
@@ -2443,21 +2776,40 @@
                             <p>We built their website, structured their Instagram and Facebook presence, and created a WhatsApp community for direct customer communication.</p>
                         </div>
 
-                        <div class="kbq-digital-composition" aria-label="Khaja BBQ digital presence">
-                            <picture class="kbq-screen kbq-phone" data-kbq-layer data-kbq-x="-32" data-kbq-y="30" data-kbq-scale="0.93">
-                                <source srcset="KBQ-assets/instagram/instagram-profile.heic" type="image/heic">
-                                <img src="KBQ-assets/instagram/instagram-profile.png" alt="Khaja BBQ Instagram profile screenshot" loading="lazy" decoding="async">
-                            </picture>
-                            <div class="kbq-digital-side">
-                                <figure class="kbq-video-frame" data-kbq-layer data-kbq-x="30" data-kbq-y="20" data-kbq-scale="0.94">
-                                    <video data-kbq-video controls muted playsinline preload="none" aria-label="Khaja BBQ Instagram video">
-                                        <source src="KBQ-assets/videos/khaja-bbq-instagram.mp4" type="video/mp4">
-                                    </video>
+                        <div class="kbq-digital-composition" data-digital-carousel aria-label="Khaja BBQ website, Instagram and Facebook presence">
+                            <div class="kbq-digital-slide" data-digital-slide aria-hidden="false">
+                                <p class="kbq-digital-label">Website</p>
+                                <div class="kbq-website-mockup" aria-label="Khaja BBQ website visual mockup">
+                                    <div class="kbq-browser-bar" aria-hidden="true"><i></i><i></i><i></i><span>khajabbq.com</span></div>
+                                    <div class="kbq-website-page">
+                                        <div class="kbq-website-nav">
+                                            <span class="kbq-website-wordmark"><span role="img" aria-label="Khaja BBQ logo"></span><span>KHAJA BBQ<span>KANSAS CITY</span></span></span>
+                                            <span class="kbq-website-links"><span>Menu</span><span>Our Story</span><span>Find Us</span></span>
+                                        </div>
+                                        <div class="kbq-website-hero"><span>Slow smoked.<br>Kansas City proud.</span></div>
+                                        <div class="kbq-website-menu"><span>Brisket · Ribs · Tacos</span><strong>Explore the menu</strong></div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="kbq-digital-slide" data-digital-slide aria-hidden="true">
+                                <p class="kbq-digital-label">Instagram</p>
+                                <figure class="kbq-instagram-mockup">
+                                    <img src="KBQ-assets/instagram/instagram-profile.png" alt="Actual Khaja BBQ Instagram profile screenshot" loading="lazy" decoding="async">
                                 </figure>
-                                <div class="kbq-report" data-kbq-layer data-kbq-x="38" data-kbq-y="34" data-kbq-scale="0.94">
-                                    <object data="KBQ-assets/instagram/instagram-insights.pdf" type="application/pdf" aria-label="Khaja BBQ Instagram Insights report">
-                                        <a href="KBQ-assets/instagram/instagram-insights.pdf">Open the Khaja BBQ Instagram Insights report</a>
-                                    </object>
+                            </div>
+                            <div class="kbq-digital-slide" data-digital-slide aria-hidden="true">
+                                <p class="kbq-digital-label">Facebook</p>
+                                <div class="kbq-facebook-mockup" aria-label="Khaja BBQ Facebook business page visual mockup">
+                                    <div class="kbq-facebook-top" aria-hidden="true"></div>
+                                    <div class="kbq-facebook-profile">
+                                        <span class="kbq-facebook-avatar" role="img" aria-label="Khaja BBQ logo"></span>
+                                        <div class="kbq-facebook-name">Khaja BBQ<span>Food Truck · Kansas City</span></div>
+                                    </div>
+                                    <div class="kbq-facebook-tabs"><span>Posts</span><span>About</span><span>Photos</span><span>More</span></div>
+                                    <div class="kbq-facebook-post">
+                                        <img src="KBQ-assets/food-content/khaja-bbq-brisket.png" alt="Khaja BBQ brisket social post" loading="lazy" decoding="async">
+                                        <p>Slow-smoked favourites, made for Kansas City. Explore Khaja BBQ.</p>
+                                    </div>
                                 </div>
                             </div>
                         </div>
@@ -2470,15 +2822,17 @@
                             <p>We create and manage ongoing content that keeps Khaja BBQ visible and relevant — from weekly posts and location announcements to short-form videos and customer-focused storytelling.</p>
                         </div>
 
-                        <div class="kbq-content-wall" aria-label="Khaja BBQ ongoing marketing creatives">
+                        <div class="kbq-content-wall" aria-label="Khaja BBQ ongoing social content">
                             <figure class="kbq-frame" data-kbq-layer data-kbq-x="-42" data-kbq-y="34" data-kbq-scale="0.92">
-                                <img src="KBQ-assets/promotional/serving-daily.jpeg" alt="Khaja BBQ daily serving announcement" loading="lazy" decoding="async">
+                                <img src="KBQ-assets/food-content/khaja-bbq-brisket.png" alt="Khaja BBQ brisket social content" loading="lazy" decoding="async">
                             </figure>
                             <figure class="kbq-frame" data-kbq-layer data-kbq-x="0" data-kbq-y="18" data-kbq-scale="0.95">
-                                <img src="KBQ-assets/food-content/khaja-bbq-brisket.png" alt="Khaja BBQ brisket content creative" loading="lazy" decoding="async">
+                                <video data-kbq-video controls muted playsinline preload="none" aria-label="Khaja BBQ Instagram behind-the-scenes video">
+                                    <source src="KBQ-assets/videos/khaja-bbq-instagram.mp4" type="video/mp4">
+                                </video>
                             </figure>
                             <figure class="kbq-frame" data-kbq-layer data-kbq-x="42" data-kbq-y="42" data-kbq-scale="0.91">
-                                <img src="KBQ-assets/trailer/khaja-bbq-olathe.png" alt="Khaja BBQ serving location creative" loading="lazy" decoding="async">
+                                <img src="KBQ-assets/instagram/instagram-profile.png" alt="Khaja BBQ ongoing social media posts and reels" loading="lazy" decoding="async">
                             </figure>
                         </div>
                     </article>
@@ -2918,9 +3272,18 @@
             const kbqStoryStage = kbqStory.querySelector('.kbq-story-stage');
             const kbqStages = [...kbqStory.querySelectorAll('.kbq-stage')];
             const kbqLayers = [...kbqWork.querySelectorAll('[data-kbq-layer]')];
+            const kbqDigitalSlides = [...kbqWork.querySelectorAll('[data-digital-slide]')];
+            const kbqDigitalStageIndex = kbqStages.findIndex((stage) => stage.querySelector('[data-digital-carousel]'));
+            const kbqStageAnchors = [0];
             let kbqFrame;
             let kbqStoryGeometry;
             const clampWork = (value, min, max) => Math.min(Math.max(value, min), max);
+
+            for (let index = 1; index < kbqStages.length; index += 1) {
+                const previousStageIndex = index - 1;
+                const stageDuration = previousStageIndex === kbqDigitalStageIndex ? 3.5 : 1;
+                kbqStageAnchors.push(kbqStageAnchors[previousStageIndex] + stageDuration);
+            }
 
             function setKbqLayer(layer, progress, opacity = 1) {
                 const baseX = Number(layer.dataset.kbqX || 0);
@@ -2956,32 +3319,34 @@
                     0,
                     1
                 );
-                const position = progress * 5.5;
                 const lastStage = kbqStages.length - 1;
+                const timelineEnd = kbqStageAnchors[lastStage];
+                const position = progress * timelineEnd;
+                const transitionDistance = 0.35;
                 const states = kbqStages.map((stage, index) => {
-                    const offset = position - index;
-                    let visualX = 72;
-                    let visualScale = 0.94;
+                    const entry = kbqStageAnchors[index];
+                    const exit = kbqStageAnchors[index + 1] ?? Infinity;
                     let opacity = 0;
 
-                    if (index === lastStage && offset >= 0) {
-                        visualX = 0;
-                        visualScale = 1;
+                    if (index === 0) {
+                        opacity = position <= exit - transitionDistance
+                            ? 1
+                            : clampWork((exit - position) / transitionDistance, 0, 1);
+                    } else if (index === lastStage) {
+                        opacity = clampWork((position - (entry - transitionDistance)) / transitionDistance, 0, 1);
+                    } else if (position < entry - transitionDistance) {
+                        opacity = 0;
+                    } else if (position < entry) {
+                        opacity = (position - (entry - transitionDistance)) / transitionDistance;
+                    } else if (position <= exit - transitionDistance) {
                         opacity = 1;
-                    } else if (offset > -1 && offset < 0) {
-                        const entering = 1 + offset;
-                        visualX = 72 * (1 - entering);
-                        visualScale = 0.94 + (0.06 * entering);
-                        opacity = 0.24 + (0.76 * entering);
-                    } else if (offset >= 0 && offset <= 1) {
-                        visualX = -72 * offset;
-                        visualScale = 1 - (0.06 * offset);
-                        opacity = 1 - (0.76 * offset);
-                    } else if (offset > 1) {
-                        visualX = -72;
+                    } else if (position < exit) {
+                        opacity = (exit - position) / transitionDistance;
                     }
 
-                    return { stage, index, visualX, visualScale, opacity };
+                    const isEntering = index > 0 && position < entry;
+                    const visualX = (isEntering ? 72 : -72) * (1 - opacity);
+                    return { stage, index, visualX, visualScale: 0.94 + (0.06 * opacity), opacity };
                 });
 
                 const active = states.reduce((closest, state) => {
@@ -3003,6 +3368,42 @@
                         setKbqLayer(layer, Math.max(state.opacity, 0.25));
                     });
                 });
+
+                if (kbqDigitalStageIndex >= 0 && kbqDigitalSlides.length) {
+                    const digitalStart = kbqStageAnchors[kbqDigitalStageIndex];
+                    const digitalEnd = kbqStageAnchors[kbqDigitalStageIndex + 1] - transitionDistance;
+                    const slidePosition = clampWork((position - digitalStart) / (digitalEnd - digitalStart), 0, 1) * (kbqDigitalSlides.length - 1);
+                    const lastSlide = kbqDigitalSlides.length - 1;
+                    const slideFadeDistance = 0.35;
+                    const digitalStageOpacity = states[kbqDigitalStageIndex].opacity;
+
+                    kbqDigitalSlides.forEach((slide, index) => {
+                        const enterStart = index - slideFadeDistance;
+                        const exitStart = index + 1 - slideFadeDistance;
+                        let opacity;
+
+                        if (index === 0) {
+                            opacity = slidePosition <= exitStart
+                                ? 1
+                                : clampWork((index + 1 - slidePosition) / slideFadeDistance, 0, 1);
+                        } else if (index === lastSlide) {
+                            opacity = clampWork((slidePosition - enterStart) / slideFadeDistance, 0, 1);
+                        } else if (slidePosition < enterStart) {
+                            opacity = 0;
+                        } else if (slidePosition < index) {
+                            opacity = (slidePosition - enterStart) / slideFadeDistance;
+                        } else if (slidePosition <= exitStart) {
+                            opacity = 1;
+                        } else if (slidePosition < index + 1) {
+                            opacity = (index + 1 - slidePosition) / slideFadeDistance;
+                        } else {
+                            opacity = 0;
+                        }
+
+                        slide.style.setProperty('--kbq-digital-opacity', opacity.toFixed(3));
+                        slide.setAttribute('aria-hidden', opacity < 0.05 || digitalStageOpacity < 0.05 ? 'true' : 'false');
+                    });
+                }
             }
 
             function renderKbqMobile() {
@@ -3011,6 +3412,10 @@
                     const progress = clampWork((window.innerHeight * 0.86 - rect.top) / (window.innerHeight * 0.62), 0, 1);
                     stage.classList.toggle('is-active', progress > 0.08);
                     stage.querySelectorAll('[data-kbq-layer]').forEach((layer) => setKbqLayer(layer, progress, 0.24 + (0.76 * progress)));
+                });
+                kbqDigitalSlides.forEach((slide) => {
+                    slide.style.setProperty('--kbq-digital-opacity', '1');
+                    slide.setAttribute('aria-hidden', 'false');
                 });
             }
 
@@ -3032,6 +3437,10 @@
                     layer.style.setProperty('--kbq-layer-y', '0px');
                     layer.style.setProperty('--kbq-layer-scale', '1');
                     layer.style.setProperty('--kbq-layer-opacity', '1');
+                });
+                kbqDigitalSlides.forEach((slide) => {
+                    slide.style.setProperty('--kbq-digital-opacity', '1');
+                    slide.setAttribute('aria-hidden', 'false');
                 });
             } else {
                 document.addEventListener('scroll', scheduleKbqRender, { passive: true });
