@@ -2827,8 +2827,8 @@
                                 <img src="KBQ-assets/food-content/khaja-bbq-brisket.png" alt="Khaja BBQ brisket social content" loading="lazy" decoding="async">
                             </figure>
                             <figure class="kbq-frame" data-kbq-layer data-kbq-x="0" data-kbq-y="18" data-kbq-scale="0.95">
-                                <video data-kbq-video controls muted playsinline preload="none" aria-label="Khaja BBQ Instagram behind-the-scenes video">
-                                    <source src="KBQ-assets/videos/khaja-bbq-instagram.mp4" type="video/mp4">
+                                <video data-kbq-video controls loop muted playsinline preload="none" aria-label="Khaja BBQ Instagram behind-the-scenes video">
+                                    <source src="KBQ-assets/videos/khaja-bbq-instagram-web.mp4" type="video/mp4">
                                 </video>
                             </figure>
                             <figure class="kbq-frame" data-kbq-layer data-kbq-x="42" data-kbq-y="42" data-kbq-scale="0.91">
@@ -3273,6 +3273,7 @@
             const kbqStages = [...kbqStory.querySelectorAll('.kbq-stage')];
             const kbqLayers = [...kbqWork.querySelectorAll('[data-kbq-layer]')];
             const kbqDigitalSlides = [...kbqWork.querySelectorAll('[data-digital-slide]')];
+            const kbqVideo = kbqWork.querySelector('[data-kbq-video]');
             const kbqDigitalStageIndex = kbqStages.findIndex((stage) => stage.querySelector('[data-digital-carousel]'));
             const kbqStageAnchors = [0];
             let kbqFrame;
@@ -3419,12 +3420,28 @@
                 });
             }
 
+            function syncKbqVideo() {
+                if (!kbqVideo) return;
+                const videoRect = kbqVideo.getBoundingClientRect();
+                const shouldPlay = !reduceMotion
+                    && kbqVideo.closest('.kbq-stage').classList.contains('is-active')
+                    && videoRect.bottom > 0
+                    && videoRect.top < window.innerHeight;
+
+                if (shouldPlay && kbqVideo.paused) {
+                    kbqVideo.play().catch((error) => console.error('Unable to autoplay the Khaja BBQ video.', error));
+                } else if (!shouldPlay && !kbqVideo.paused) {
+                    kbqVideo.pause();
+                }
+            }
+
             function renderKbqWork() {
                 kbqFrame = undefined;
                 renderKbqIntro();
 
                 if (window.matchMedia('(min-width: 961px)').matches) renderKbqCarousel();
                 else renderKbqMobile();
+                syncKbqVideo();
             }
 
             function scheduleKbqRender() {
