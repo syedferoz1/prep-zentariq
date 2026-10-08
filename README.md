@@ -46,10 +46,10 @@ visitor data is never used as the sender.
 
 4. Confirm the Worker's `EMAIL_FROM` and `ALLOWED_ORIGIN` values in
    `wrangler.toml`. Set `ALLOWED_ORIGIN` to the exact origin hosting the site
-   (without a path).
-5. Copy the deployed Worker URL, append `/api/contact`, and set that full
-   HTTPS URL in the `contact-endpoint` meta tag in `index.html`. Commit and push
-   that configuration change to publish the functional form.
+   (without a path). The production values use `https://prep.zentariq.com` and
+   the Worker custom domain `https://contact.zentariq.com`.
+5. The `contact-endpoint` meta tag in `index.html` points to the production
+   Worker endpoint. Keep it synchronized if the Worker hostname changes.
 
 `wrangler.toml` configures a Cloudflare rate-limit binding (five requests per
 minute per visitor/IP and Cloudflare location) and contains no secrets. Never
