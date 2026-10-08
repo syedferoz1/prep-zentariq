@@ -39,6 +39,7 @@ jobs:
         with:
           path: |
             index.html
+            thank-you.html
             KBQ-assets/
       - name: Deploy to GitHub Pages
         id: deployment

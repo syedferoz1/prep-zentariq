@@ -3679,6 +3679,7 @@
 
                     submitLabel.textContent = 'Sent ✓';
                     showFormStatus("Thank you. We've received your enquiry and will be in touch shortly.", 'success');
+                    window.location.assign('thank-you.html');
                 } catch {
                     submitLabel.textContent = "Let's Talk";
                     showFormStatus('Something went wrong while sending your enquiry. Please try again.', 'error');

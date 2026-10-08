@@ -15,8 +15,8 @@ node --test tests/contact-worker.test.js
 ## GitHub Pages
 
 The repository has no compile step. `.github/workflows/deploy-pages.yml` runs
-the Worker tests and deploys `index.html` and `KBQ-assets/` to GitHub Pages on
-each push to `main`.
+the Worker tests and deploys `index.html`, `thank-you.html`, and `KBQ-assets/`
+to GitHub Pages on each push to `main`.
 
 The expected project site URL is
 `https://syedferoz1.github.io/prep-zentariq/`; the Worker origin is
@@ -59,4 +59,5 @@ in Cloudflare Worker settings.
 
 The form validates required answers, phone and email formats, and positive
 ordered budgets in both the browser and Worker. It uses a honeypot, limits
-repeated requests, and reports success only after Resend accepts the email.
+repeated requests, and redirects to `thank-you.html` only after the Worker
+confirms that Resend accepted the email.
