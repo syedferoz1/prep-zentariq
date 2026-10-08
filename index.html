@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description" content="Zentariq Solutions: digital growth and business transformation. We build brands, create demand and engineer growth.">
+    <meta name="contact-endpoint" content="">
     <title>Zentariq Solutions</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -2103,6 +2104,41 @@
             box-shadow: 0 0 0 3px rgba(255,127,47,0.1);
         }
 
+        .talk-growth-form [aria-invalid="true"] {
+            border-color: var(--accent);
+        }
+
+        .talk-field-error,
+        .talk-form-status {
+            margin-top: 8px;
+            color: var(--accent);
+            font-size: 0.78rem;
+            line-height: 1.5;
+        }
+
+        .talk-form-status {
+            margin-top: 16px;
+            color: var(--text-soft);
+        }
+
+        .talk-form-status[data-state="error"] {
+            color: var(--accent);
+        }
+
+        .talk-submit:disabled {
+            cursor: wait;
+            opacity: 0.72;
+        }
+
+        .talk-honeypot {
+            position: absolute;
+            width: 1px;
+            height: 1px;
+            overflow: hidden;
+            clip-path: inset(50%);
+            white-space: nowrap;
+        }
+
         .talk-form-divider {
             height: 1px;
             margin: 26px 0;
@@ -2912,9 +2948,9 @@
                         <p class="talk-growth-note">Tell us where your business is today and where you want it to go. This helps us determine the right approach and provide appropriate pricing.</p>
                     </div>
 
-                    <form class="talk-growth-form">
+                    <form class="talk-growth-form" novalidate>
                         <div class="talk-form-header">
-                            <p class="talk-form-title">Tell us about your business</p>
+                            <p class="talk-form-title">Business Questions</p>
                             <p class="talk-form-count">3 quick questions</p>
                         </div>
 
@@ -2923,7 +2959,8 @@
                                 <span class="talk-question-number" aria-hidden="true">01</span>
                                 <div>
                                     <label for="business-description">What does your business do, and who do you serve?</label>
-                                    <textarea id="business-description" name="business-description"></textarea>
+                                    <textarea id="business-description" name="business-description" maxlength="10000" required aria-describedby="business-description-error"></textarea>
+                                    <p class="talk-field-error" id="business-description-error" hidden></p>
                                 </div>
                             </div>
 
@@ -2931,7 +2968,8 @@
                                 <span class="talk-question-number" aria-hidden="true">02</span>
                                 <div>
                                     <label for="business-location">Where are you currently running your business from?</label>
-                                    <textarea id="business-location" name="business-location"></textarea>
+                                    <textarea id="business-location" name="business-location" maxlength="10000" required aria-describedby="business-location-error"></textarea>
+                                    <p class="talk-field-error" id="business-location-error" hidden></p>
                                 </div>
                             </div>
 
@@ -2939,7 +2977,8 @@
                                 <span class="talk-question-number" aria-hidden="true">03</span>
                                 <div>
                                     <label for="business-vision">Where do you want your business to be in the next few years?</label>
-                                    <textarea id="business-vision" name="business-vision"></textarea>
+                                    <textarea id="business-vision" name="business-vision" maxlength="10000" required aria-describedby="business-vision-error"></textarea>
+                                    <p class="talk-field-error" id="business-vision-error" hidden></p>
                                 </div>
                             </div>
                         </div>
@@ -2947,19 +2986,22 @@
                         <div class="talk-form-divider" aria-hidden="true"></div>
 
                         <section aria-labelledby="talk-details-title">
-                            <h3 class="talk-form-section-title" id="talk-details-title">Your details</h3>
+                            <h3 class="talk-form-section-title" id="talk-details-title">Contact Details</h3>
                             <div class="talk-details-grid">
                                 <div class="talk-field">
                                     <label for="full-name">Full Name</label>
-                                    <input id="full-name" name="full-name" type="text" autocomplete="name">
+                                    <input id="full-name" name="full-name" type="text" maxlength="120" autocomplete="name" required aria-describedby="full-name-error">
+                                    <p class="talk-field-error" id="full-name-error" hidden></p>
                                 </div>
                                 <div class="talk-field">
                                     <label for="phone-number">Phone Number</label>
-                                    <input id="phone-number" name="phone-number" type="tel" autocomplete="tel">
+                                    <input id="phone-number" name="phone-number" type="tel" maxlength="40" autocomplete="tel" required aria-describedby="phone-number-error">
+                                    <p class="talk-field-error" id="phone-number-error" hidden></p>
                                 </div>
                                 <div class="talk-field">
                                     <label for="business-email">Business Email</label>
-                                    <input id="business-email" name="business-email" type="email" autocomplete="email">
+                                    <input id="business-email" name="business-email" type="email" maxlength="254" autocomplete="email" required aria-describedby="business-email-error">
+                                    <p class="talk-field-error" id="business-email-error" hidden></p>
                                 </div>
                             </div>
                         </section>
@@ -2973,20 +3015,27 @@
                                     <label for="budget-minimum">Minimum</label>
                                     <div class="talk-budget-input">
                                         <span aria-hidden="true">$</span>
-                                        <input id="budget-minimum" name="budget-minimum" type="number" min="0" step="1" inputmode="decimal" aria-label="Minimum monthly marketing budget in US dollars">
+                                        <input id="budget-minimum" name="budget-minimum" type="number" min="0.01" step="0.01" inputmode="decimal" required aria-label="Minimum monthly marketing budget in US dollars" aria-describedby="budget-minimum-error">
                                     </div>
+                                    <p class="talk-field-error" id="budget-minimum-error" hidden></p>
                                 </div>
                                 <div class="talk-budget-field">
                                     <label for="budget-maximum">Maximum</label>
                                     <div class="talk-budget-input">
                                         <span aria-hidden="true">$</span>
-                                        <input id="budget-maximum" name="budget-maximum" type="number" min="0" step="1" inputmode="decimal" aria-label="Maximum monthly marketing budget in US dollars">
+                                        <input id="budget-maximum" name="budget-maximum" type="number" min="0.01" step="0.01" inputmode="decimal" required aria-label="Maximum monthly marketing budget in US dollars" aria-describedby="budget-maximum-error">
                                     </div>
+                                    <p class="talk-field-error" id="budget-maximum-error" hidden></p>
                                 </div>
                             </div>
                         </section>
 
-                        <button class="btn btn-primary talk-submit" type="submit">Let's Talk <span class="btn-arrow" aria-hidden="true">→</span></button>
+                        <div class="talk-honeypot" aria-hidden="true">
+                            <label for="website">Leave this field empty</label>
+                            <input id="website" name="website" type="text" tabindex="-1" autocomplete="off">
+                        </div>
+                        <button class="btn btn-primary talk-submit" type="submit"><span data-submit-label>Let's Talk</span> <span class="btn-arrow" aria-hidden="true">→</span></button>
+                        <p class="talk-form-status" data-form-status role="status" aria-live="polite" hidden></p>
                     </form>
                 </div>
             </section>
@@ -3472,6 +3521,172 @@
                 renderKbqWork();
             }
 
+        }
+
+        const growthForm = document.querySelector('.talk-growth-form');
+
+        if (growthForm) {
+            const submitButton = growthForm.querySelector('.talk-submit');
+            const submitLabel = growthForm.querySelector('[data-submit-label]');
+            const formStatus = growthForm.querySelector('[data-form-status]');
+            const fields = {
+                fullName: growthForm.elements.namedItem('full-name'),
+                phoneNumber: growthForm.elements.namedItem('phone-number'),
+                businessEmail: growthForm.elements.namedItem('business-email'),
+                businessDescription: growthForm.elements.namedItem('business-description'),
+                businessLocation: growthForm.elements.namedItem('business-location'),
+                businessVision: growthForm.elements.namedItem('business-vision'),
+                budgetMinimum: growthForm.elements.namedItem('budget-minimum'),
+                budgetMaximum: growthForm.elements.namedItem('budget-maximum')
+            };
+            let submitting = false;
+
+            function showFormStatus(message, state) {
+                formStatus.textContent = message;
+                formStatus.dataset.state = state;
+                formStatus.hidden = false;
+            }
+
+            function clearFieldError(field) {
+                const message = growthForm.querySelector(`#${field.id}-error`);
+                field.removeAttribute('aria-invalid');
+                if (message) {
+                    message.textContent = '';
+                    message.hidden = true;
+                }
+            }
+
+            function setFieldError(field, message) {
+                const messageElement = growthForm.querySelector(`#${field.id}-error`);
+                field.setAttribute('aria-invalid', 'true');
+                if (messageElement) {
+                    messageElement.textContent = message;
+                    messageElement.hidden = false;
+                }
+            }
+
+            function validateForm() {
+                const errors = {};
+                const phoneDigits = fields.phoneNumber.value.replace(/\D/g, '').length;
+                const phonePattern = /^\+?[0-9().\s-]+$/;
+                const minimum = Number(fields.budgetMinimum.value);
+                const maximum = Number(fields.budgetMaximum.value);
+
+                if (!fields.fullName.value.trim()) errors.fullName = 'Enter your full name.';
+                if (!fields.phoneNumber.value.trim()) errors.phoneNumber = 'Enter your phone number.';
+                else if (!phonePattern.test(fields.phoneNumber.value.trim()) || phoneDigits < 7 || phoneDigits > 15) {
+                    errors.phoneNumber = 'Enter a valid phone number with 7 to 15 digits.';
+                }
+                if (!fields.businessEmail.value.trim()) errors.businessEmail = 'Enter your business email.';
+                else if (!fields.businessEmail.validity.valid) errors.businessEmail = 'Enter a valid email address.';
+
+                for (const name of ['businessDescription', 'businessLocation', 'businessVision']) {
+                    if (!fields[name].value.trim()) errors[name] = 'This answer is required.';
+                }
+
+                if (!fields.budgetMinimum.value || !Number.isFinite(minimum) || minimum <= 0) {
+                    errors.budgetMinimum = 'Enter a positive minimum budget.';
+                }
+                if (!fields.budgetMaximum.value || !Number.isFinite(maximum) || maximum <= 0) {
+                    errors.budgetMaximum = 'Enter a positive maximum budget.';
+                }
+                if (!errors.budgetMinimum && !errors.budgetMaximum && minimum > maximum) {
+                    errors.budgetMaximum = 'Maximum budget must be at least the minimum budget.';
+                }
+
+                Object.entries(fields).forEach(([name, field]) => {
+                    clearFieldError(field);
+                    if (errors[name]) setFieldError(field, errors[name]);
+                });
+
+                const firstInvalid = Object.keys(errors)[0];
+                if (firstInvalid) fields[firstInvalid].focus();
+                return errors;
+            }
+
+            growthForm.addEventListener('input', () => {
+                submitLabel.textContent = "Let's Talk";
+                formStatus.hidden = true;
+                Object.values(fields).forEach(clearFieldError);
+            });
+
+            growthForm.addEventListener('submit', async (event) => {
+                event.preventDefault();
+                if (submitting) return;
+
+                const errors = validateForm();
+                if (Object.keys(errors).length) {
+                    showFormStatus('Please review the highlighted fields and try again.', 'error');
+                    return;
+                }
+
+                const endpoint = document.querySelector('meta[name="contact-endpoint"]')?.content.trim();
+                if (!endpoint) {
+                    showFormStatus('The enquiry service is not configured yet. Please contact us directly.', 'error');
+                    return;
+                }
+
+                let endpointUrl;
+                try {
+                    endpointUrl = new URL(endpoint);
+                } catch {
+                    showFormStatus('The enquiry service is not configured securely. Please contact us directly.', 'error');
+                    return;
+                }
+                if (endpointUrl.protocol !== 'https:' && endpointUrl.hostname !== 'localhost' && endpointUrl.hostname !== '127.0.0.1') {
+                    showFormStatus('The enquiry service is not configured securely. Please contact us directly.', 'error');
+                    return;
+                }
+
+                const payload = {
+                    fullName: fields.fullName.value.trim(),
+                    phoneNumber: fields.phoneNumber.value.trim(),
+                    businessEmail: fields.businessEmail.value.trim(),
+                    businessDescription: fields.businessDescription.value.trim(),
+                    businessLocation: fields.businessLocation.value.trim(),
+                    businessVision: fields.businessVision.value.trim(),
+                    budgetMinimum: Number(fields.budgetMinimum.value),
+                    budgetMaximum: Number(fields.budgetMaximum.value),
+                    website: growthForm.elements.namedItem('website').value
+                };
+
+                submitting = true;
+                submitButton.disabled = true;
+                submitLabel.textContent = 'Sending...';
+                showFormStatus('Sending your enquiry...', 'sending');
+
+                try {
+                    const response = await fetch(endpointUrl, {
+                        method: 'POST',
+                        headers: { 'Content-Type': 'application/json' },
+                        body: JSON.stringify(payload)
+                    });
+                    const result = await response.json().catch(() => null);
+
+                    if (!response.ok || result?.sent !== true) {
+                        if (result?.fields) {
+                            Object.entries(result.fields).forEach(([name, message]) => {
+                                if (fields[name]) setFieldError(fields[name], message);
+                            });
+                        }
+                        const message = response.status === 429
+                            ? 'Too many attempts. Please try again later.'
+                            : 'Something went wrong while sending your enquiry. Please try again.';
+                        showFormStatus(message, 'error');
+                        submitLabel.textContent = "Let's Talk";
+                        return;
+                    }
+
+                    submitLabel.textContent = 'Sent ✓';
+                    showFormStatus("Thank you. We've received your enquiry and will be in touch shortly.", 'success');
+                } catch {
+                    submitLabel.textContent = "Let's Talk";
+                    showFormStatus('Something went wrong while sending your enquiry. Please try again.', 'error');
+                } finally {
+                    submitting = false;
+                    submitButton.disabled = false;
+                }
+            });
         }
     </script>
 </body>

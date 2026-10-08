@@ -1,0 +1,16 @@
+name = "zentariq-contact"
+main = "src/contact-worker.js"
+compatibility_date = "2026-10-08"
+workers_dev = true
+
+[[ratelimits]]
+name = "CONTACT_RATE_LIMITER"
+namespace_id = "8427301659"
+
+    [ratelimits.simple]
+    limit = 5
+    period = 60
+
+[vars]
+ALLOWED_ORIGIN = "https://syedferoz1.github.io"
+EMAIL_FROM = "Zentariq Solutions <hello@zentariq.com>"
