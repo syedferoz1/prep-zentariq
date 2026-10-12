@@ -16,12 +16,23 @@ node --test tests/contact-worker.test.js
 
 The production site is hosted on Vercel at
 [`https://prep.zentariq.com`](https://prep.zentariq.com). The Vercel GitHub
-integration deploys changes pushed to `main`. The repository has no compile
-step; `.github/workflows/validate.yml` runs the Worker tests on each push.
+integration deploys changes pushed to `main`. The site is static and has no
+build step; Vercel serves the HTML files and assets from the repository root.
+`.vercelignore` excludes the Worker source, tests, and repository metadata from
+the site deployment. `.github/workflows/validate.yml` runs the Worker tests on
+each push.
 
 The production site includes `index.html`, `work.html`, `thank-you.html`,
 `assets/`, and `KBQ-assets/`. Check the Vercel deployment status on the commit
-and verify the live site after publishing.
+and verify the home page, work page, and image assets after publishing.
+
+For a manual production deploy from the repository root, link the Vercel
+project once and deploy:
+
+```sh
+npx vercel link
+npx vercel deploy --prod
+```
 
 ## Enquiry email setup
 
