@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Selected work from Zentariq Solutions, including brand, digital presence, content and campaign work for Khaja BBQ.">
+    <title>Our Work — Zentariq Solutions</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <script>document.documentElement.classList.add('js');</script>
+    <style>
+        :root { --bg:#010101; --text:#f5f3ee; --soft:rgba(245,243,238,.72); --faint:rgba(245,243,238,.5); --line:rgba(255,255,255,.08); --accent:#ff7f2f; --ease:cubic-bezier(.16,1,.3,1); }
+        * { box-sizing:border-box; margin:0; padding:0; }
+        html { scroll-behavior:smooth; }
+        body { min-height:100vh; padding:20px; overflow-x:hidden; background:var(--bg); color:var(--text); font-family:Inter,"Segoe UI",Arial,sans-serif; line-height:1.5; }
+        body::before { content:""; position:fixed; inset:0; z-index:-2; pointer-events:none; background:radial-gradient(circle at 10% 10%,rgba(255,127,47,.06),transparent 30%),linear-gradient(135deg,rgba(255,255,255,.01),transparent 50%); }
+        body::after { content:""; position:fixed; inset:0; z-index:-1; pointer-events:none; opacity:.28; background-image:linear-gradient(rgba(255,255,255,.035) 1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,.035) 1px,transparent 1px); background-size:88px 88px; mask-image:linear-gradient(180deg,rgba(0,0,0,.8),transparent); }
+        a { color:inherit; text-decoration:none; }
+        .cursor-glow { position:fixed; width:280px; height:280px; border-radius:50%; background:radial-gradient(circle,rgba(255,127,47,.12),transparent 72%); pointer-events:none; transform:translate(-50%,-50%); z-index:2; mix-blend-mode:screen; opacity:0; transition:opacity .25s ease; }
+        .page-frame { position:relative; isolation:isolate; width:min(100%,1440px); margin:auto; padding:clamp(22px,3vw,36px) clamp(22px,4.5vw,64px); overflow:hidden; border:1px solid rgba(255,255,255,.1); border-radius:36px; background:linear-gradient(135deg,rgba(255,255,255,.018),rgba(255,255,255,.004)); box-shadow:0 26px 80px rgba(0,0,0,.28); backdrop-filter:blur(18px); }
+        .page-frame::before { content:""; position:absolute; inset:0; z-index:-1; pointer-events:none; background:radial-gradient(circle at top left,rgba(255,127,47,.08),transparent 40%); }
+        .site-header { display:flex; align-items:center; justify-content:space-between; gap:24px; padding-bottom:clamp(18px,2vw,24px); border-bottom:1px solid var(--line); }
+        .brand { display:inline-flex; min-width:0; align-items:center; }
+        .brand-logo-crop { position:relative; display:block; width:clamp(220px,22vw,300px); height:64px; overflow:hidden; }
+        .brand-logo-crop img { position:absolute; top:50%; left:0; display:block; width:100%; height:auto; transform:translateY(-50%); }
+        .site-nav { display:flex; align-items:center; gap:clamp(20px,3vw,44px); min-width:0; }
+        .site-nav a { position:relative; padding:6px 0; color:var(--soft); font-size:.74rem; font-weight:500; letter-spacing:.14em; text-transform:uppercase; transition:color .22s; white-space:nowrap; }
+        .site-nav a::after { content:""; position:absolute; right:0; bottom:-4px; left:0; height:2px; border-radius:2px; background:var(--accent); transform:scaleX(0); transition:transform .3s var(--ease); }
+        .site-nav a:hover,.site-nav a.is-active { color:var(--text); }.site-nav a:hover::after,.site-nav a.is-active::after { transform:scaleX(1); }
+        .btn { display:inline-flex; align-items:center; justify-content:center; gap:10px; min-height:52px; padding:14px 28px; border:1px solid transparent; border-radius:999px; font-size:.8rem; font-weight:600; letter-spacing:.14em; text-transform:uppercase; transition:transform .25s,box-shadow .25s,background .25s; }
+        .btn:hover { transform:translateY(-2px); box-shadow:0 12px 25px rgba(0,0,0,.22); }.btn-primary { background:var(--accent); color:#160a03; }.btn-outline { border-color:rgba(255,127,47,.65); color:var(--text); }.btn-arrow { font-size:1.15em; }
+        /* ---------- Our Work hero ---------- */
+        .work-hero { position:relative; display:grid; grid-template-columns:minmax(0,.96fr) minmax(390px,1.04fr); align-items:center; gap:clamp(40px,6vw,100px); min-height:min(720px,calc(100svh - 128px)); padding:clamp(68px,9vw,128px) 0 clamp(76px,8vw,116px); }
+        .work-hero-copy { position:relative; z-index:1; }.eyebrow { display:flex; align-items:center; gap:16px; color:var(--accent); font-size:.72rem; font-weight:600; letter-spacing:.2em; text-transform:uppercase; }.eyebrow::before { content:""; width:50px; height:1px; background:currentColor; }
+        .work-hero-title { max-width:8.7ch; margin:22px 0 28px; font-size:clamp(3.25rem,6.6vw,6.7rem); font-weight:600; letter-spacing:-.07em; line-height:.94; }.accent { color:var(--accent); }.work-hero-description { max-width:52ch; color:var(--soft); font-size:clamp(1rem,1.3vw,1.14rem); }
+        .work-filters { display:flex; flex-wrap:wrap; gap:10px; margin-top:clamp(30px,4vw,46px); }.work-filter { min-height:42px; padding:9px 17px; border-color:rgba(255,255,255,.2); color:var(--soft); background:transparent; font-size:.68rem; letter-spacing:.1em; cursor:pointer; }.work-filter:hover,.work-filter:focus-visible { border-color:var(--accent); color:var(--text); background:rgba(255,127,47,.08); box-shadow:none; transform:none; }.work-filter.is-active { border-color:var(--accent); background:var(--accent); color:#100c07; font-weight:700; }
+        .work-hero-media { position:relative; width:100%; max-width:690px; justify-self:end; }.work-hero-image-frame { position:relative; margin:0; }.work-hero-image { display:block; width:100%; height:auto; filter:drop-shadow(0 28px 36px rgba(0,0,0,.38)); }.work-hero-caption { position:absolute; right:-14px; bottom:-30px; z-index:1; display:flex; flex-direction:column; align-items:flex-end; max-width:15ch; color:var(--accent); font-size:clamp(.76rem,1.1vw,.95rem); font-weight:500; font-style:italic; letter-spacing:.06em; line-height:1.25; text-align:right; pointer-events:none; transform:rotate(-7deg); }.work-hero-caption > span { display:block; }.work-hero-flow-arrow { width:27px; height:18px; margin:1px 9px 1px 0; color:var(--accent); }.work-hero-flow-arrow path,.work-hero-arrow path { fill:none; stroke:currentColor; stroke-width:1.5; stroke-linecap:round; stroke-linejoin:round; stroke-dasharray:2 5; }.work-hero-flow-arrow path:last-child,.work-hero-arrow path:last-child { stroke-dasharray:none; }.work-hero-arrow { position:absolute; bottom:-47px; right:72px; width:90px; height:68px; color:var(--accent); opacity:.82; pointer-events:none; transform:rotate(-8deg); }.work-hero-dots { position:absolute; top:-32px; right:-26px; width:145px; height:118px; color:rgba(255,127,47,.55); pointer-events:none; }.work-hero-dots path { fill:none; stroke:currentColor; stroke-width:1.5; stroke-linecap:round; stroke-linejoin:round; stroke-dasharray:2 7; }
+        /* ---------- Portfolio ---------- */
+        .portfolio-section { padding:clamp(74px,10vw,140px) 0 clamp(36px,6vw,86px); border-top:1px solid var(--line); }.portfolio-intro { display:flex; align-items:end; justify-content:space-between; gap:30px; margin-bottom:clamp(34px,5vw,66px); }.portfolio-title { max-width:11ch; font-size:clamp(2.3rem,4.5vw,4.6rem); font-weight:600; letter-spacing:-.06em; line-height:.98; }.portfolio-note { max-width:34ch; color:var(--soft); font-size:.93rem; }.portfolio-list { display:grid; gap:clamp(20px,3vw,36px); }
+        .project-card { display:grid; grid-template-columns:minmax(300px,.88fr) minmax(0,1.12fr); overflow:hidden; border:1px solid rgba(255,255,255,.13); border-radius:28px; background:linear-gradient(135deg,rgba(255,255,255,.025),rgba(255,255,255,.006)); transition:transform 280ms var(--ease),border-color 280ms var(--ease),box-shadow 280ms var(--ease),background 280ms var(--ease); }.project-card:hover { transform:translateY(-5px); border-color:rgba(255,127,47,.48); background:linear-gradient(135deg,rgba(255,127,47,.055),rgba(255,255,255,.012)); box-shadow:0 22px 52px rgba(0,0,0,.25); }.project-art { position:relative; min-height:370px; overflow:hidden; border-right:1px solid rgba(255,255,255,.1); background:radial-gradient(circle at 18% 16%,rgba(255,127,47,.2),transparent 36%),linear-gradient(145deg,#1e1712,#090909 72%); }.project-art::after { content:""; position:absolute; inset:0; pointer-events:none; background:linear-gradient(125deg,rgba(255,255,255,.05),transparent 40%,rgba(0,0,0,.18)); }.project-art img { position:relative; z-index:1; display:block; width:100%; height:100%; object-fit:cover; transition:transform 330ms var(--ease); }.project-card:hover .project-art img { transform:scale(1.045); }
+        .marquis-art,.client-logo-art { display:grid; place-items:center; padding:clamp(40px,7vw,86px); background:radial-gradient(circle at 82% 20%,rgba(255,205,23,.14),transparent 26%),linear-gradient(145deg,#29221e,#0c0a09 72%); }                .marquis-art { padding:0; background:#fff; }.marquis-art::after { display:none; }.marquis-logo,.client-logo { position:relative; z-index:1; width:min(100%,420px); height:min(100%,260px); object-fit:contain; filter:drop-shadow(0 14px 25px rgba(0,0,0,.25)); }.project-art .marquis-logo { width:min(100%,560px); height:auto; max-height:280px; object-fit:contain; filter:none; }.client-logo-art { background:radial-gradient(circle at 18% 14%,rgba(255,127,47,.14),transparent 28%),linear-gradient(145deg,#1e1712,#090909 72%); }.khaja-art img { object-position:34% center; transform:none; transform-origin:center; }.project-card:hover .khaja-art img { transform:scale(1.045); }
+        .project-details { padding:clamp(28px,4.4vw,58px); }.project-kicker { display:flex; align-items:center; gap:18px; color:var(--accent); font-size:.72rem; font-weight:600; letter-spacing:.15em; }.project-meta { color:var(--accent); }.project-details h3 { margin:clamp(26px,4vw,52px) 0 16px; font-size:clamp(2rem,3.6vw,3.75rem); font-weight:600; letter-spacing:-.06em; line-height:.98; }.project-description { max-width:58ch; color:var(--soft); }.service-tags { display:flex; flex-wrap:wrap; gap:8px; margin-top:clamp(26px,3.8vw,42px); list-style:none; }.service-tags li { display:inline-flex; align-items:center; gap:8px; padding:7px 11px; border:1px solid rgba(255,127,47,.28); border-radius:999px; background:rgba(255,127,47,.055); color:var(--accent); font-size:.63rem; font-weight:500; letter-spacing:.07em; line-height:1.35; text-transform:uppercase; transition:border-color 250ms var(--ease),background 250ms var(--ease); }.service-tags li::before { content:""; width:7px; height:4px; flex:0 0 auto; border-bottom:1.5px solid currentColor; border-left:1.5px solid currentColor; transform:rotate(-45deg) translateY(-1px); }.project-card:hover .service-tags li { border-color:rgba(255,127,47,.65); background:rgba(255,127,47,.09); }
+        .reveal { opacity:0; transform:translateY(20px); transition:opacity .75s var(--ease),transform .75s var(--ease); }.reveal.is-in { opacity:1; transform:none; }
+        :focus-visible { outline:2px solid var(--accent); outline-offset:4px; }
+        @media (max-width:960px) { .site-header { flex-wrap:wrap; }.site-nav { order:3; flex:1 0 100%; justify-content:space-between; overflow-x:auto; padding:4px 2px 8px; }.work-hero { grid-template-columns:minmax(0,1fr) minmax(300px,.86fr); gap:42px; min-height:0; }.work-hero-caption { right:0; }.project-card { grid-template-columns:minmax(270px,.8fr) minmax(0,1.2fr); }.project-art { min-height:330px; } }
+        @media (max-width:720px) { .work-hero { grid-template-columns:1fr; gap:52px; padding-top:68px; }.work-hero-media { justify-self:start; max-width:600px; }.work-hero-caption { bottom:-28px; }.work-hero-arrow { right:56px; }.work-hero-dots { right:-15px; }.portfolio-intro { display:block; }.portfolio-note { margin-top:16px; }.project-card { grid-template-columns:1fr; }.project-art { min-height:clamp(260px,72vw,390px); border-right:0; border-bottom:1px solid rgba(255,255,255,.1); }.project-details h3 { margin-top:28px; } }
+        @media (max-width:620px) { body { padding:12px; }.page-frame { padding:22px; border-radius:24px; }.site-header { gap:12px; }.brand-logo-crop { width:min(260px,calc(100vw - 190px)); height:52px; }.site-nav { justify-content:flex-start; gap:24px; }.site-nav a { font-size:.64rem; letter-spacing:.1em; }.btn { min-height:42px; padding:10px 17px; font-size:.68rem; }.site-header > .btn { white-space:nowrap; }.work-hero { gap:46px; padding:54px 0 74px; }.work-hero-title { font-size:clamp(3rem,15vw,4.5rem); }.work-hero-description { font-size:1rem; }.work-filters { flex-wrap:nowrap; width:calc(100% + 1px); margin-right:-1px; overflow-x:auto; padding-bottom:4px; scrollbar-width:thin; }.work-filter { flex:0 0 auto; }.work-hero-caption,.work-hero-arrow,.work-hero-dots { display:none; } }
+        @media (hover:none),(pointer:coarse) { .cursor-glow { display:none; } }
+        @media (prefers-reduced-motion:reduce) { .project-card,.project-art img,.service-tags li { transition:none; }.project-card:hover { transform:none; }.project-card:hover .project-art img,.project-card:hover .khaja-art img { transform:none; } }
+    </style>
+</head>
+<body>
+    <div class="cursor-glow" aria-hidden="true"></div>
+    <div class="page-frame">
+        <header class="site-header">
+            <a class="brand" href="index.html" aria-label="Zentariq Solutions home"><span class="brand-logo-crop"><img src="KBQ-assets/branding/zentariq-logo-transparent.png" alt="Zentariq Solutions"></span></a>
+            <nav class="site-nav" aria-label="Primary">
+                <a href="index.html">Intro</a>
+                <a href="index.html#who-we-are">Who We Are</a>
+                <a class="is-active" href="work.html" aria-current="page">Our Work</a>
+                <a href="index.html#case-studies">Case Study</a>
+            </nav>
+            <a class="btn btn-outline" href="index.html#lets-talk">Let's Grow <span class="btn-arrow" aria-hidden="true">→</span></a>
+        </header>
+        <main>
+            <section class="work-hero" aria-labelledby="page-title">
+                <div class="work-hero-copy reveal">
+                    <p class="eyebrow">Our Work</p>
+                    <h1 class="work-hero-title" id="page-title">Real Businesses.<br><span class="accent">Real Impact.</span></h1>
+                    <p class="work-hero-description">From Education to Real Estate, from Food Brands to Growing Institutions, we help businesses build stronger brands, reach the right audience, and achieve meaningful growth through Strategy, Creativity and Technology.</p>
+                    <div class="work-filters" role="group" aria-label="Filter work by category">
+                        <button class="btn work-filter is-active" type="button" aria-pressed="true">All</button>
+                        <button class="btn work-filter" type="button" aria-pressed="false">Education</button>
+                        <button class="btn work-filter" type="button" aria-pressed="false">Food &amp; Beverage</button>
+                        <button class="btn work-filter" type="button" aria-pressed="false">Real Estate</button>
+                        <button class="btn work-filter" type="button" aria-pressed="false">Strategic Campaigns</button>
+                    </div>
+                </div>
+                <div class="work-hero-media reveal">
+                    <svg class="work-hero-dots" viewBox="0 0 145 118" aria-hidden="true"><path d="M7 14C63 0 137 20 132 70c-2 24-21 35-49 39" /></svg>
+                    <figure class="work-hero-image-frame"><img class="work-hero-image" src="assets/images/zentariq-our-work-hero-image.png" alt="Laptop workspace showing Zentariq project work" fetchpriority="high"></figure>
+                    <div class="work-hero-caption" aria-hidden="true"><span>Ideas</span><svg class="work-hero-flow-arrow" viewBox="0 0 27 18"><path d="M2 3c7 0 15 2 18 9" /><path d="M16 9l4 3-4 3" /></svg><span>Execution</span><svg class="work-hero-flow-arrow" viewBox="0 0 27 18"><path d="M2 3c7 0 15 2 18 9" /><path d="M16 9l4 3-4 3" /></svg><span>Growth</span></div>
+                    <svg class="work-hero-arrow" viewBox="0 0 90 68" aria-hidden="true"><path d="M3 7c16 4 41 14 54 34 8 12 8 19 8 23" /><path d="M56 55l9 9 8-12" /></svg>
+                </div>
+            </section>
+            <section class="portfolio-section" aria-labelledby="portfolio-title">
+                <div class="portfolio-intro reveal">
+                    <div><p class="eyebrow">Selected Projects</p><h2 class="portfolio-title" id="portfolio-title">Work with real-world purpose.</h2></div>
+                    <p class="portfolio-note">A selection of the brands, institutions and businesses we have supported through strategy, creativity and digital execution.</p>
+                </div>
+                <div class="portfolio-list" data-portfolio-list>
+                    <article class="project-card reveal" data-categories="education strategic-campaigns">
+                        <figure class="project-art marquis-art"><img class="marquis-logo" src="assets/images/Marquis Logo.png" alt="Marquis Education logo"></figure>
+                        <div class="project-details"><p class="project-kicker"><span class="project-meta">Education | Australia</span></p><h3>Marquis Education</h3><p class="project-description">Performance marketing strategy focused on reaching prospective students and parents in India for international education opportunities in Australia. We developed a 45-day campaign plan, audience targeting, and lead-generation funnels to drive relevant enquiries.</p><ul class="service-tags"><li>Performance Marketing Strategy</li><li>Meta Ads Campaign Planning</li><li>Audience Targeting &amp; Segmentation</li><li>Lead Generation Funnel</li><li>45-Day Masterclass Campaign</li><li>Content &amp; Masterclass Campaign</li><li>Campaign Optimisation &amp; Reporting</li></ul></div>
+                    </article>
+                    <article class="project-card reveal" data-categories="food-beverage">
+                        <figure class="project-art khaja-art"><img src="KBQ-assets/branding/khaja-bbq-brand-applications.jpeg" alt="Khaja BBQ branded food trailer and merchandise"></figure>
+                        <div class="project-details"><p class="project-kicker"><span class="project-meta">Food &amp; Beverage | USA</span></p><h3>Khaja BBQ</h3><p class="project-description">Branding and marketing support for a halal BBQ food truck and catering business in Kansas City. We created a strong brand identity and promotional materials to help present their food offering effectively to local customers.</p><ul class="service-tags"><li>Brand Identity &amp; Logo</li><li>Menu Design &amp; Presentation</li><li>Food Truck Promotion</li><li>Catering Marketing</li><li>Event &amp; Local Marketing</li><li>Visual Branding</li><li>Launch Planning</li></ul></div>
+                    </article>
+                    <article class="project-card reveal" data-categories="real-estate">
+                        <figure class="project-art client-logo-art"><img class="client-logo" src="assets/images/springfield_properties_logo.jpeg" alt="Springfield Properties logo"></figure>
+                        <div class="project-details"><p class="project-kicker"><span class="project-meta">Real Estate</span></p><h3>Springfield Real Estate</h3><p class="project-description">Marketing strategy and digital support for a real estate business, focused on strengthening their online presence and generating quality enquiries.</p><ul class="service-tags"><li>Marketing Strategy</li><li>Lead Generation Planning</li><li>Property Marketing</li><li>Digital Campaigns</li><li>Social Media Support</li><li>Brand Communication</li><li>CRM &amp; Enquiry Management</li></ul></div>
+                    </article>
+                    <article class="project-card reveal" data-categories="education strategic-campaigns">
+                        <figure class="project-art client-logo-art"><img class="client-logo" src="assets/images/SGA-logo.jpg" alt="Shri Gurukula Academy logo"></figure>
+                        <div class="project-details"><p class="project-kicker"><span class="project-meta">Education | India</span></p><h3>Shri Gurukula Academy</h3><p class="project-description">Website development and marketing support to enhance the institution’s digital presence and local outreach. We also supported event promotions including the Green Spark Science Exhibition and Teacher’s Day activities.</p><ul class="service-tags"><li>Website Development</li><li>Domain Migration</li><li>Event Marketing</li><li>Registration Form &amp; WhatsApp Integration</li><li>Brochures &amp; Print Materials</li><li>Local Outreach</li><li>Social Media Support</li></ul></div>
+                    </article>
+                    <article class="project-card reveal" data-categories="food-beverage strategic-campaigns">
+                        <figure class="project-art client-logo-art"><img class="client-logo" src="assets/images/broastkhan.png" alt="Broast Khan logo"></figure>
+                        <div class="project-details"><p class="project-kicker"><span class="project-meta">Food &amp; Beverage</span></p><h3>Broast Khan</h3><p class="project-description">Marketing strategy and brand development for a fried chicken brand, inspired by leading global food brands. Focused on positioning, customer acquisition and promotional planning.</p><ul class="service-tags"><li>Marketing Strategy</li><li>Brand Positioning</li><li>Promotional Planning</li><li>Customer Acquisition</li><li>Digital Marketing Direction</li><li>Competitor Research</li><li>Growth Planning</li></ul></div>
+                    </article>
+                    <article class="project-card reveal" data-categories="food-beverage strategic-campaigns">
+                        <figure class="project-art client-logo-art"><img class="client-logo" src="assets/images/flametheory.png" alt="Flame Theory logo"></figure>
+                        <div class="project-details"><p class="project-kicker"><span class="project-meta">Food &amp; Beverage</span></p><h3>Flame Theory</h3><p class="project-description">Promotional campaign support for a cloud kitchen brand, focusing on Ramadan Iftar and Sehri offerings. We developed marketing collateral, menu communication, QR code materials and social media content to drive customer engagement.</p><ul class="service-tags"><li>Campaign Planning</li><li>Menu &amp; Flyer Design</li><li>QR Code Ordering Support</li><li>Social Media Content</li><li>Influencer Outreach</li><li>Product &amp; Pricing Support</li><li>Promotional Creatives</li></ul></div>
+                    </article>
+                </div>
+            </section>
+        </main>
+    </div>
+    <script>
+        const glow = document.querySelector('.cursor-glow');
+        if (glow && window.matchMedia('(hover:hover) and (pointer:fine)').matches) document.addEventListener('mousemove', e => { glow.style.left = `${e.clientX}px`; glow.style.top = `${e.clientY}px`; glow.style.opacity = '1'; });
+        const items = document.querySelectorAll('.reveal');
+        if (matchMedia('(prefers-reduced-motion: reduce)').matches || !('IntersectionObserver' in window)) items.forEach(item => item.classList.add('is-in'));
+        else { const observer = new IntersectionObserver(entries => entries.forEach(entry => { if (entry.isIntersecting) { entry.target.classList.add('is-in'); observer.unobserve(entry.target); } }), { threshold:.12 }); items.forEach(item => observer.observe(item)); }
+
+        const filters = document.querySelectorAll('.work-filter');
+        const projectCards = document.querySelectorAll('.project-card');
+        filters.forEach((filter) => filter.addEventListener('click', () => {
+            const selected = filter.textContent.trim().toLowerCase().replaceAll(' & ', '-').replaceAll(' ', '-');
+            filters.forEach((item) => { const active = item === filter; item.classList.toggle('is-active', active); item.setAttribute('aria-pressed', String(active)); });
+            projectCards.forEach((card) => { card.hidden = selected !== 'all' && !card.dataset.categories.split(' ').includes(selected); });
+        }));
+    </script>
+</body>
+</html>

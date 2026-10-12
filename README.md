@@ -12,17 +12,16 @@ server. Run the Worker tests with:
 node --test tests/contact-worker.test.js
 ```
 
-## GitHub Pages
+## Production deployment
 
-The repository has no compile step. `.github/workflows/deploy-pages.yml` runs
-the Worker tests and deploys `index.html`, `thank-you.html`, and `KBQ-assets/`
-to GitHub Pages on each push to `main`.
+The production site is hosted on Vercel at
+[`https://prep.zentariq.com`](https://prep.zentariq.com). The Vercel GitHub
+integration deploys changes pushed to `main`. The repository has no compile
+step; `.github/workflows/validate.yml` runs the Worker tests on each push.
 
-The expected project site URL is
-`https://syedferoz1.github.io/prep-zentariq/`; the Worker origin is
-`https://syedferoz1.github.io`. At the time of this audit, the Pages URL
-returned GitHub's "Site not found" 404. The deployment workflow is now included;
-confirm its first run succeeds after pushing.
+The production site includes `index.html`, `work.html`, `thank-you.html`,
+`assets/`, and `KBQ-assets/`. Check the Vercel deployment status on the commit
+and verify the live site after publishing.
 
 ## Enquiry email setup
 
